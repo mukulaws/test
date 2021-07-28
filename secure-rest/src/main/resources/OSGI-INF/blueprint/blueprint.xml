@@ -72,4 +72,6 @@
         <!-- Name of the JAAS Context -->
         <property name="contextName" value="karaf"/>
     </bean>
+    <bean id="custom" class="com.mukul.CustomBean"/>
 </blueprint>
+

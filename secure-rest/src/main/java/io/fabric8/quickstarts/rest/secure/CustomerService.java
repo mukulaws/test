@@ -42,7 +42,7 @@ import org.slf4j.LoggerFactory;
 @Path("/customerservice/")
 public class CustomerService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(CustomerService.class);
+    private static final Logger LOG1 = LoggerFactory.getLogger(CustomerService.class);
 
     long currentId = 123;
     Map<Long, Customer> customers = new HashMap<Long, Customer>();
@@ -68,7 +68,7 @@ public class CustomerService {
     @Path("/customers/{id}/")
     @Produces("application/xml")
     public Customer getCustomer(@com.wordnik.swagger.annotations.ApiParam(value = "id") @PathParam("id") String id) {
-        LOG.info("Invoking getCustomer, Customer id is: {}", id);
+        LOG1.info("Invoking getCustomer, Customer id is: {}", id);
         long idNumber = Long.parseLong(id);
         Customer c = customers.get(idNumber);
         return c;
@@ -91,7 +91,7 @@ public class CustomerService {
     @PUT
     @Path("/customers/")
     public Response updateCustomer(@com.wordnik.swagger.annotations.ApiParam(value = "customer") Customer customer) {
-        LOG.info("Invoking updateCustomer, Customer name is: {}", customer.getName());
+        LOG1.info("Invoking updateCustomer, Customer name is: {}", customer.getName());
         Customer c = customers.get(customer.getId());
         Response r;
         if (c != null) {
@@ -123,7 +123,7 @@ public class CustomerService {
     @POST
     @Path("/customers/")
     public Response addCustomer(@com.wordnik.swagger.annotations.ApiParam(value = "customer") Customer customer) {
-        LOG.info("Invoking addCustomer, Customer name is: {}", customer.getName());
+        LOG1.info("Invoking addCustomer, Customer name is: {}", customer.getName());
         customer.setId(++currentId);
 
         customers.put(customer.getId(), customer);
@@ -144,7 +144,7 @@ public class CustomerService {
     @DELETE
     @Path("/customers/{id}/")
     public Response deleteCustomer(@com.wordnik.swagger.annotations.ApiParam(value = "id") @PathParam("id") String id) {
-        LOG.info("Invoking deleteCustomer, Customer id is: {}", id);
+        LOG1.info("Invoking deleteCustomer, Customer id is: {}", id);
         long idNumber = Long.parseLong(id);
         Customer c = customers.get(idNumber);
 
@@ -173,7 +173,7 @@ public class CustomerService {
         notes = "/** \n * This method is mapped to an HTTP GET of 'http://localhost:8181/cxf/crm/customerservice/orders/{id}'.  The value for {id} will be passed to this message as a parameter, using the @PathParam annotation. <p/> The method returns an Order object - the class for that object includes a few more JAX-RS annotations, allowing it to display one of these two outputs, depending on the actual URI path being used: - display the order information itself in XML format - display details about a product in the order in XML format in a path relative to the URI defined here\n */\n")
     @Path("/orders/{orderId}/")
     public Order getOrder(@com.wordnik.swagger.annotations.ApiParam(value = "orderId") @PathParam("orderId") String orderId) {
-        LOG.info("Invoking getOrder, Order id is: {}", orderId);
+        LOG1.info("Invoking getOrder, Order id is: {}", orderId);
         long idNumber = Long.parseLong(orderId);
         Order c = orders.get(idNumber);
         return c;
